@@ -5,7 +5,15 @@ import tempfile
 import mock
 import json
 from flask import Flask
-from datastructures import FamilyStructure
+
+@pytest.mark.it("Method GET /members/3443 should exist")
+def test_get_single_member_implemented(client):
+    family_structure = FamilyStructure()  # Crear una instancia de FamilyStructure
+    response = client.get('/members/3443')
+    assert response.status_code == 404
+    data = json.loads(response.data)
+    assert data is not None
+
 
 @pytest.fixture
 def client():

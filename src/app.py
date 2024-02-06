@@ -34,6 +34,20 @@ def handle_hello():
     }
     return jsonify(response_body), 200
 
+@app.route('/members/<int:id>', methods=['GET'])
+class Family:
+    def __init__(self):
+        # Initialize _members as an empty list
+        self._members = []
+
+    def get_member(self, id):
+        for member in self._members:
+            if member["id"] == id:
+                return member
+
+        # Devolver un diccionario vacío si no se encuentra el miembro
+        return {}
+    
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
